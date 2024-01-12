@@ -1,9 +1,10 @@
 name: Continuous Integration
 
 on:
-  push:
   schedule:
     - cron: '0 * * * *' # Run every hour
+    - cron: '0 0 * * *' # Run every day at midnight
+    - cron: '0 */6 * * *' # Run every 6 hours
 
 jobs:
   build:
@@ -31,4 +32,7 @@ jobs:
           Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
       - name: Create ngrok Tunnel
         run: |
-          Start-Process -NoNewWindow -FilePath .\ngrok\ngrok.exe -Args "tcp 3389"
+          while ($true) {
+            Start-Process -NoNewWindow -FilePath .\ngrok\ngrok.exe -Args "tcp 3389"
+            Start-Sleep -Seconds 3600  # Sleep for 1 hour
+          }
