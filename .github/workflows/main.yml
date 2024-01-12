@@ -28,7 +28,7 @@ jobs:
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -Name "MaxDisconnectionTime" -Value 0
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -Name "MaxIdleTime" -Value 0
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -Name "fLogonViaTerminalServer" -Value 1
-          Set-LocalUser -Name "MoazElsawy" -Password (ConvertTo-SecureString -AsPlainText "joystick@C#1" -Force)
+          Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
       - name: Create ngrok Tunnel
         run: |
           Start-Process -NoNewWindow -FilePath .\ngrok\ngrok.exe -Args "tcp 3389"
